@@ -22,8 +22,9 @@ app.use(express.urlencoded({ extended: false }));
 
 // Roots
 app.get('/api', (req, res) => {
+  console.log('You are in the [/api] root')
   res.status(200).json({
-    message: 'Hello from the server!'
+    message: 'Hey there 👋, you are in the [/api] root'
   })
 })
 
