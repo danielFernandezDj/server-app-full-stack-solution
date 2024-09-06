@@ -1,7 +1,9 @@
 const express = require('express')
-const app = express()
 const path = require('path')
 const cors = require('cors')
+
+// Initialize the Express app
+const app = express()
 
 // Serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, "public")))
@@ -23,7 +25,7 @@ app.get('/', (req, res) => {
 })
 
 // Controllers
-// N/A for now!
+//   N/A for now!
 
 const port = process.env.PORT || 1010
 app.listen(port, () => {
