@@ -2,31 +2,35 @@ const express = require('express')
 const path = require('path')
 const cors = require('cors')
 
-// Initialize the Express app
-const app = express()
-
-// Serve static files from the "public" folder
-app.use(express.static(path.join(__dirname, "public")))
-
+// Create express app
+const app = express();
+app.use(cors())
 // Allow CORS too the client | Frontend.
 // const corsOptions = {
 //   origin: 'https://backend-production-1cdd.up.railway.app/',
 //   optionsSuccessStatus: 200
 // };
 // app.use(cors(corsOptions));
-app.use(cors());
 
-// dotenv setup
-require('dotenv').config()
+// Serve static files from the "public" folder
+app.use(express.static(path.join(__dirname, "public")))
+
+// CONFIGURATION / MIDDLEWARE
+require('dotenv').config();
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 // Roots
-app.get('/', (req, res) => {
-  res.send('Hello World!')
+app.get('/api', (req, res) => {
+  res.status(200).json({
+    message: 'Hello from the server!'
+  })
 })
 
 // Controllers
 //   N/A for now!
 
+// Listen
 const port = process.env.PORT || 1010
 app.listen(port, () => {
   console.log(`🎣 Fishing on port: ${port}`)
